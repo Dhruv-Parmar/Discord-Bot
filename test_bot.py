@@ -7,8 +7,9 @@ module.
 There are a number of utility commands being showcased here.'''
 bot = commands.Bot(command_prefix='!', description=description)
 
+"""figure out how to put a display function in here eventually"""
 class character:
-	def __init__ (self, name, descriptor, type_, focus, tier, effort, xp, might_max, might_current, might_edge, speed_max, speed_current, speed_edge, intellect_max, intellect_current, intellect_edge, equipment, money, advancement, notes, background, skills, special_abilities):
+	def __init__ (self, name = None, descriptor = None, type_ = None, focus = None, tier = None, effort = None, xp = None, might_max = None, might_current = None, might_edge = None, speed_max = None, speed_current = None, speed_edge = None, intellect_max = None, intellect_current = None, intellect_edge = None, equipment = None, money = None, advancement = None, notes = None, background = None, skills = None, special_abilities = None):
 		self.name = name
 		self.descriptor = descriptor
 		self.type_ = type_
@@ -32,6 +33,9 @@ class character:
 		self.background = background
 		self.skills = skills
 		self.special_abilities = special_abilities
+
+'''Will hold all the character for "easy" iteration'''
+party = []
 
 @bot.event
 async def on_ready():
@@ -72,6 +76,37 @@ async def repeat(times : int, content='repeating...'):
 async def joined(member : discord.Member):
 	"""Says when a member joined."""
 	await bot.say('{0.name} joined in {0.joined_at}'.format(member))
+
+@bot.command()
+async def load(char_name):
+	"""Load specified character"""
+	data = []
+	exists = False
+	fo = open(char_name + ".txt", "r")
+	data = [line.rstrip('\n') for line in fo]
+	fo.close()
+	for i,v in enumerate(data[:]):
+		tok = v.find('=')
+		data[i] = v[tok+1:]
+	for char in party:
+		if (data[0] == char.name):
+			await bot.say('%s already exists in the party.' %char_name)
+			exists = True
+	if (exists == False):
+		temp = character(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], data[14], data[15], data[16], data[17], data[18], data[19], data[20], data[21], data[22])
+		party.append(temp)
+		await bot.say('%s has been added to the party!' %data[0])
+
+@bot.command()
+async def display(char_name):
+	"""Displays players stats n stuff"""
+	found = False
+	for char in party:
+		if (char.name == char_name):
+			await bot.say("Name = " + char.name + "\nDescriptor = " + char.descriptor + "\nType = " + char.type_ + "\nFocus = " + char.focus + "\nTier = " + char.tier + "\nEffort = " + char.effort + "\nXP = " + char.xp + "\nMight Max = " + char.might_max + "\nMight Current = " + char.might_current + "\nMight Edge = " + char.might_edge + "\nSpeed Max = " + char.speed_max + "\nSpeed Current = " + char.speed_current + "\nSpeed Edge = " + char.speed_edge + "\nIntellect Max = " + char.intellect_max + "\nIntellect Current = " + char.intellect_current + "\nIntellect Edge = " + char.intellect_edge + "\nEquipment = " + char.equipment + "\nMoney = " + char.money + "\nAdvancement = " + char.advancement + "\nNotes = " + char.notes + "\nBackground = " + char.background + "\nSkills = " + char.skills + "\nSpecial Abilities = " + char.special_abilities)
+			found = True
+	if (found == False):
+		await bot.say("I couldn't find that character in the party. (%s)" %char_name)
 
 @bot.command()
 async def weather():
