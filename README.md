@@ -1,4 +1,6 @@
-A Discord bot using Discord.py to help us play Cypher System via chat
+A Discord bot using Discord.py to help us play Cypher System via chat. 
+
+This code is (imo very) badly designed, but I doubt anyone outside our friend group is going to use it so it doesn't really matter. 
 
 Will update readme later.
 
