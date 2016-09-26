@@ -1,0 +1,2 @@
+test_char
+test_char2
