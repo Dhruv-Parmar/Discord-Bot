@@ -291,5 +291,49 @@ async def weather():
 	foo_choice = random.choice(foo)
 	await bot.say(foo_choice)
 
+def save_character(char : character):
+	fo = open(char.name+".txt", "w+")
+	fo.write("name="+ char.name + "\n")
+	fo.write("descriptor="+ char.descriptor + "\n")
+	fo.write("type_="+ char.type_ + "\n")
+	fo.write("focus="+ char.focus + "\n")
+	fo.write("tier="+ char.tier + "\n")
+	fo.write("effort="+ char.effort + "\n")
+	fo.write("xp="+ char.xp + "\n")
+	fo.write("might_max="+ char.might_max + "\n")
+	fo.write("might_current="+ char.might_current + "\n")
+	fo.write("might_edge="+ char.might_edge + "\n")
+	fo.write("speed_max="+ char.speed_max + "\n")
+	fo.write("speed_current="+ char.speed_current + "\n")
+	fo.write("speed_edge="+ char.speed_edge + "\n")
+	fo.write("intellect_max="+ char.intellect_max + "\n")
+	fo.write("intellect_current="+ char.intellect_current + "\n")
+	fo.write("intellect_edge="+ char.intellect_edge + "\n")
+	fo.write("equipment="+ char.equipment + "\n")
+	fo.write("money="+ char.money + "\n")
+	fo.write("advancement="+ char.advancement + "\n")
+	fo.write("notes="+ char.notes + "\n")
+	fo.write("background="+ char.background + "\n")
+	fo.write("skills="+ char.skills + "\n")
+	fo.write("special_abilities="+ char.special_abilities + "\n")
+	fo.close()
+
+@bot.command()
+async def save(var : str):
+	found = False
+	for char in party:
+		if (var == char.name):
+			save_character(char)
+			found = True
+			await bot.say("Successfully saved %s" %var)
+	if (var == "all"):
+		for char in party:
+			save_character(char)
+			found = True
+			await bot.say("Successfully saved all characters")
+	if (found == False):
+		await bot.say("%s character not found. (try !save all)")
+
+
 
 bot.run('MjI4MjM3MDEyMTAzMjAwNzY5.CsRx3Q.p8llqXeRVGjDhMAtFnjbmjhTvDU')

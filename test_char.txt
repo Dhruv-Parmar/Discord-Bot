@@ -19,5 +19,5 @@ money=123
 advancement=123
 notes=123
 background=123
-skills=123
+skills=4
 special_abilities=123
