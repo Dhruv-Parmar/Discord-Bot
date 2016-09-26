@@ -9,3 +9,4 @@ How to not break this aweful code:
 2) Don't use new line in the template. Keep each stat on one line, even if it's really long
 3) Don't swap around stats on the character template
 4) Keep copy of character sheets in case something goes wrong
+5) Dont put spaces in chacter name and don't name yourself "all"
