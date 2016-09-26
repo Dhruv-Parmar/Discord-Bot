@@ -50,6 +50,109 @@ async def add(left : int, right : int):
 	await bot.say(left + right)
 
 @bot.command()
+async def change(name : str, stat : str, new_value : str):
+	found = False
+	old_value = ""
+	for char in party:
+		if (name == char.name):
+			if (stat == "name"):
+				old_value = char.name
+				char.name = new_value
+				found = True
+			elif (stat == "descriptor"):
+				old_value = char.descriptor
+				char.descriptor = new_value
+				found = True
+			elif (stat == "type_"):
+				old_value = char.type_
+				char.type_ = new_value
+				found = True
+			elif (stat == "focus"):
+				old_value = char.focus
+				char.focus = new_value
+				found = True
+			elif (stat == "tier"):
+				old_value = char.tier
+				char.tier = new_value
+				found = True
+			elif (stat == "effort"):
+				old_value = char.effort
+				char.effort = new_value
+				found = True
+			elif (stat == "xp"):
+				old_value = char.xp
+				char.xp = new_value
+				found = True
+			elif (stat == "might_max"):
+				old_value = char.might_max
+				char.might_max = new_value
+				found = True
+			elif (stat == "might_current"):
+				old_value = char.might_current
+				char.might_current = new_value
+				found = True
+			elif (stat == "might_edge"):
+				old_value = char.might_edge
+				char.might_edge = new_value
+				found = True
+			elif (stat == "speed_max"):
+				old_value = char.speed_max
+				char.speed_max = new_value
+				found = True
+			elif (stat == "speed_current"):
+				old_value = char.speed_current
+				char.speed_current = new_value
+				found = True
+			elif (stat == "speed_edge"):
+				old_value = char.speed_edge
+				char.speed_edge = new_value
+				found = True
+			elif (stat == "intellect_max"):
+				old_value = char.intellect_max
+				char.intellect_max = new_value
+				found = True
+			elif (stat == "intellect_current"):
+				old_value = char.intellect_current
+				char.intellect_current = new_value
+				found = True
+			elif (stat == "intellect_edge"):
+				old_value = char.intellect_edge
+				char.intellect_edge = new_value
+				found = True
+			elif (stat == "equipment"):
+				old_value = char.equipment
+				char.equipment = new_value
+				found = True
+			elif (stat == "money"):
+				old_value = char.money
+				char.money = new_value
+				found = True
+			elif (stat == "advancement"):
+				old_value = char.advancement
+				char.advancement = new_value
+				found = True
+			elif (stat == "notes"):
+				old_value = char.notes
+				char.notes = new_value
+				found = True
+			elif (stat == "background"):
+				old_value = char.background
+				char.background = new_value
+				found = True
+			elif (stat == "skills"):
+				old_value = char.skills
+				char.skills = new_value
+				found = True
+			elif (stat == "special_abilities"):
+				old_value = char.special_abilities
+				char.special_abilities = new_value
+				found = True
+	if (found == True):
+		await bot.say("%s's %s value has been changed from %s to %s" %(name,stat,old_value,new_value))
+	else:
+		await bot.say("Either %s was not found in the party or %s stat doesn't match format on character sheet template" %(name,stat))
+
+@bot.command()
 async def roll(dice : str):
 	"""Rolls a dice in NdN format."""
 	try:
