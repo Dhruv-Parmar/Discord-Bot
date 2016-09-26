@@ -148,9 +148,9 @@ async def change(name : str, stat : str, new_value : str):
 				char.special_abilities = new_value
 				found = True
 	if (found == True):
-		await bot.say("%s's %s value has been changed from %s to %s" %(name,stat,old_value,new_value))
+		await bot.say("```%s's %s value has been changed from %s to %s```" %(name,stat,old_value,new_value))
 	else:
-		await bot.say("Either %s was not found in the party or %s stat doesn't match format on character sheet template" %(name,stat))
+		await bot.say("```Either %s was not found in the party or %s stat doesn't match format on character sheet template```" %(name,stat))
 
 @bot.command()
 async def roll(dice : str):
@@ -158,7 +158,7 @@ async def roll(dice : str):
 	try:
 		rolls, limit = map(int, dice.split('d'))
 	except Exception:
-		await bot.say('Format has to be in NdN!')
+		await bot.say('```Format has to be in NdN!```')
 		return
 
 	result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
@@ -183,12 +183,12 @@ async def load(char_name):
 		data[i] = v[tok+1:]
 	for char in party:
 		if (data[0] == char.name):
-			await bot.say('%s already exists in the party.' %char_name)
+			await bot.say('```%s already exists in the party.```' %char_name)
 			exists = True
 	if (exists == False):
 		temp = character(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], data[14], data[15], data[16], data[17], data[18], data[19], data[20], data[21], data[22])
 		party.append(temp)
-		await bot.say('%s has been added to the party!' %data[0])
+		await bot.say('```%s has been added to the party!```' %data[0])
 
 @bot.command()
 async def display(char_name : str, stat : str = None):
@@ -197,96 +197,96 @@ async def display(char_name : str, stat : str = None):
 	found = False
 	if (char_name == "all"):
 		for char in party:
-			await bot.say("Name = " + char.name + "\nDescriptor = " + char.descriptor + "\nType = " + char.type_ + "\nFocus = " + char.focus + "\nTier = " + char.tier + "\nEffort = " + char.effort + "\nXP = " + char.xp + "\nMight Max = " + char.might_max + "\nMight Current = " + char.might_current + "\nMight Edge = " + char.might_edge + "\nSpeed Max = " + char.speed_max + "\nSpeed Current = " + char.speed_current + "\nSpeed Edge = " + char.speed_edge + "\nIntellect Max = " + char.intellect_max + "\nIntellect Current = " + char.intellect_current + "\nIntellect Edge = " + char.intellect_edge + "\nEquipment = " + char.equipment + "\nMoney = " + char.money + "\nAdvancement = " + char.advancement + "\nNotes = " + char.notes + "\nBackground = " + char.background + "\nSkills = " + char.skills + "\nSpecial Abilities = " + char.special_abilities + "\n\n\n")
+			await bot.say("```Name = " + char.name + "\nDescriptor = " + char.descriptor + "\nType = " + char.type_ + "\nFocus = " + char.focus + "\nTier = " + char.tier + "\nEffort = " + char.effort + "\nXP = " + char.xp + "\nMight Max = " + char.might_max + "\nMight Current = " + char.might_current + "\nMight Edge = " + char.might_edge + "\nSpeed Max = " + char.speed_max + "\nSpeed Current = " + char.speed_current + "\nSpeed Edge = " + char.speed_edge + "\nIntellect Max = " + char.intellect_max + "\nIntellect Current = " + char.intellect_current + "\nIntellect Edge = " + char.intellect_edge + "\nEquipment = " + char.equipment + "\nMoney = " + char.money + "\nAdvancement = " + char.advancement + "\nNotes = " + char.notes + "\nBackground = " + char.background + "\nSkills = " + char.skills + "\nSpecial Abilities = " + char.special_abilities + "\n\n\n```")
 			found = True
 	if (found == False):
 		for char in party:
 			if (char.name == char_name):
 				if (stat != None):
 					if (stat == "name"):
-						await bot.say("%s' name is %s" %(char.name,char.name))
+						await bot.say("```What do you think it is?```" %(char.name,char.name))
 						found = True
 					elif (stat == "descriptor"):
-						await bot.say("%s' descriptor is %s" %(char.name,char.descriptor))
+						await bot.say("```%s' descriptor is %s```" %(char.name,char.descriptor))
 						found = True
 					elif (stat == "type_"):
-						await bot.say("%s' type_ is %s" %(char.name,char.type_))
+						await bot.say("```%s' type_ is %s```" %(char.name,char.type_))
 						found = True
 					elif (stat == "focus"):
-						await bot.say("%s' focus is %s" %(char.name,char.focus))
+						await bot.say("```%s' focus is %s```" %(char.name,char.focus))
 						found = True
 					elif (stat == "tier"):
-						await bot.say("%s' tier is %s" %(char.name,char.tier))
+						await bot.say("```%s' tier is %s```" %(char.name,char.tier))
 						found = True
 					elif (stat == "effort"):
-						await bot.say("%s' effort is %s" %(char.name,char.effort))
+						await bot.say("```%s' effort is %s```" %(char.name,char.effort))
 						found = True
 					elif (stat == "xp"):
-						await bot.say("%s' xp is %s" %(char.name,char.xp))
+						await bot.say("```%s' xp is %s```" %(char.name,char.xp))
 						found = True
 					elif (stat == "might_max"):
-						await bot.say("%s' might_max is %s" %(char.name,char.might_max))
+						await bot.say("```%s' might_max is %s```" %(char.name,char.might_max))
 						found = True
 					elif (stat == "might_current"):
-						await bot.say("%s' might_current is %s" %(char.name,char.might_current))
+						await bot.say("```%s' might_current is %s```" %(char.name,char.might_current))
 						found = True
 					elif (stat == "might_edge"):
-						await bot.say("%s' might_edge is %s" %(char.name,char.might_edge))
+						await bot.say("```%s' might_edge is %s```" %(char.name,char.might_edge))
 						found = True
 					elif (stat == "speed_max"):
-						await bot.say("%s' speed_max is %s" %(char.name,char.speed_max))
+						await bot.say("```%s' speed_max is %s```" %(char.name,char.speed_max))
 						found = True
 					elif (stat == "speed_current"):
-						await bot.say("%s' speed_current is %s" %(char.name,char.speed_current))
+						await bot.say("```%s' speed_current is %s```" %(char.name,char.speed_current))
 						found = True
 					elif (stat == "speed_edge"):
-						await bot.say("%s' speed_edge is %s" %(char.name,char.speed_edge))
+						await bot.say("```%s' speed_edge is %s```" %(char.name,char.speed_edge))
 						found = True
 					elif (stat == "intellect_max"):
-						await bot.say("%s' intellect_max is %s" %(char.name,char.intellect_max))
+						await bot.say("```%s' intellect_max is %s```" %(char.name,char.intellect_max))
 						found = True
 					elif (stat == "intellect_current"):
-						await bot.say("%s' intellect_current is %s" %(char.name,char.intellect_current))
+						await bot.say("```%s' intellect_current is %s```" %(char.name,char.intellect_current))
 						found = True
 					elif (stat == "intellect_edge"):
-						await bot.say("%s' intellect_edge is %s" %(char.name,char.intellect_edge))
+						await bot.say("```%s' intellect_edge is %s```" %(char.name,char.intellect_edge))
 						found = True
 					elif (stat == "equipment"):
-						await bot.say("%s' equipment list is %s" %(char.name,char.equipment))
+						await bot.say("```%s' equipment list is %s```" %(char.name,char.equipment))
 						found = True
 					elif (stat == "money"):
-						await bot.say("%s' money is %s" %(char.name,char.money))
+						await bot.say("```%s' money is %s```" %(char.name,char.money))
 						found = True
 					elif (stat == "advancement"):
-						await bot.say("%s' advancement is %s" %(char.name,char.advancement))
+						await bot.say("```%s' advancement is %s```" %(char.name,char.advancement))
 						found = True
 					elif (stat == "notes"):
-						await bot.say("%s' notes are %s" %(char.name,char.notes))
+						await bot.say("```%s' notes are %s```" %(char.name,char.notes))
 						found = True
 					elif (stat == "background"):
-						await bot.say("%s' background is %s" %(char.name,char.background))
+						await bot.say("```%s' background is %s```" %(char.name,char.background))
 						found = True
 					elif (stat == "skills"):
-						await bot.say("%s' skills are %s" %(char.name,char.skills))
+						await bot.say("```%s' skills are %s```" %(char.name,char.skills))
 						found = True
 					elif (stat == "special_abilities"):
-						await bot.say("%s' special_abilities are %s" %(char.name,char.special_abilities))
+						await bot.say("```%s' special_abilities are %s```" %(char.name,char.special_abilities))
 						found = True
 				else:
-					await bot.say("Name = " + char.name + "\nDescriptor = " + char.descriptor + "\nType = " + char.type_ + "\nFocus = " + char.focus + "\nTier = " + char.tier + "\nEffort = " + char.effort + "\nXP = " + char.xp + "\nMight Max = " + char.might_max + "\nMight Current = " + char.might_current + "\nMight Edge = " + char.might_edge + "\nSpeed Max = " + char.speed_max + "\nSpeed Current = " + char.speed_current + "\nSpeed Edge = " + char.speed_edge + "\nIntellect Max = " + char.intellect_max + "\nIntellect Current = " + char.intellect_current + "\nIntellect Edge = " + char.intellect_edge + "\nEquipment = " + char.equipment + "\nMoney = " + char.money + "\nAdvancement = " + char.advancement + "\nNotes = " + char.notes + "\nBackground = " + char.background + "\nSkills = " + char.skills + "\nSpecial Abilities = " + char.special_abilities)
+					await bot.say("```Name = " + char.name + "\nDescriptor = " + char.descriptor + "\nType = " + char.type_ + "\nFocus = " + char.focus + "\nTier = " + char.tier + "\nEffort = " + char.effort + "\nXP = " + char.xp + "\nMight Max = " + char.might_max + "\nMight Current = " + char.might_current + "\nMight Edge = " + char.might_edge + "\nSpeed Max = " + char.speed_max + "\nSpeed Current = " + char.speed_current + "\nSpeed Edge = " + char.speed_edge + "\nIntellect Max = " + char.intellect_max + "\nIntellect Current = " + char.intellect_current + "\nIntellect Edge = " + char.intellect_edge + "\nEquipment = " + char.equipment + "\nMoney = " + char.money + "\nAdvancement = " + char.advancement + "\nNotes = " + char.notes + "\nBackground = " + char.background + "\nSkills = " + char.skills + "\nSpecial Abilities = " + char.special_abilities + "```")
 					found = True
 	if (found == False):
-		await bot.say("I couldn't find that character in the party. (%s)" %char_name)
+		await bot.say("```I couldn't find that character in the party. (%s)```" %char_name)
 
 @bot.command()
 async def weather():
 	"""Random weather condition"""
 	foo = [ 
-		'It\'s a dry and sunny day with occasional breeze.',
-		'It\'mostly sunny with only a few passing clouds. There\'s a slight breeze.',
-		'It\'s cloudy with a strong breeze. It doesn\'nt look like it\'s going to clear up any time soon.',
-		'Dark clouds begin gathering and the winds are picking up.',
-		'Acid rain begins to fall. Any metal around you begins to break down in minutes'
+		'```It\'s a dry and sunny day with occasional breeze.```',
+		'```It\'mostly sunny with only a few passing clouds. There\'s a slight breeze.```',
+		'```It\'s cloudy with a strong breeze. It doesn\'nt look like it\'s going to clear up any time soon.```',
+		'```Dark clouds begin gathering and the winds are picking up.```',
+		'```Acid rain begins to fall. Any metal around you begins to break down in minutes```'
 	]
 	foo_choice = random.choice(foo)
 	await bot.say(foo_choice)
@@ -325,14 +325,14 @@ async def save(var : str):
 		if (var == char.name):
 			save_character(char)
 			found = True
-			await bot.say("Successfully saved %s" %var)
+			await bot.say("```Successfully saved %s```" %var)
 	if (var == "all"):
 		for char in party:
 			save_character(char)
 			found = True
-			await bot.say("Successfully saved all characters")
+			await bot.say("```Successfully saved all characters```")
 	if (found == False):
-		await bot.say("%s character not found. (try !save all)")
+		await bot.say("```%s character not found. (try !save all to just save everyone)```")
 
 
 
