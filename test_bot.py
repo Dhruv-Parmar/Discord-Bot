@@ -2,10 +2,10 @@ import discord
 from discord.ext import commands
 import random
 
-description = '''An example bot to showcase the discord.ext.commands extension
-module.
-There are a number of utility commands being showcased here.'''
+description = '''A bot to to help us play Cypher System via chat'''
 bot = commands.Bot(command_prefix='!', description=description)
+
+cool_kids = {'Durv#9702', 'Willy#8706'}
 
 """figure out how to put a display function in here eventually"""
 class character:
@@ -34,7 +34,7 @@ class character:
 		self.skills = skills
 		self.special_abilities = special_abilities
 
-'''Will hold all the character for "easy" iteration'''
+'''Will hold all the characters for "easy" iteration'''
 party = []
 
 @bot.event
@@ -49,108 +49,109 @@ async def add(left : int, right : int):
 	"""Adds two numbers together."""
 	await bot.say(left + right)
 
-@bot.command()
-async def change(name : str, stat : str, new_value : str):
-	found = False
-	old_value = ""
-	for char in party:
-		if (name == char.name):
-			if (stat == "name"):
-				old_value = char.name
-				char.name = new_value
-				found = True
-			elif (stat == "descriptor"):
-				old_value = char.descriptor
-				char.descriptor = new_value
-				found = True
-			elif (stat == "type_"):
-				old_value = char.type_
-				char.type_ = new_value
-				found = True
-			elif (stat == "focus"):
-				old_value = char.focus
-				char.focus = new_value
-				found = True
-			elif (stat == "tier"):
-				old_value = char.tier
-				char.tier = new_value
-				found = True
-			elif (stat == "effort"):
-				old_value = char.effort
-				char.effort = new_value
-				found = True
-			elif (stat == "xp"):
-				old_value = char.xp
-				char.xp = new_value
-				found = True
-			elif (stat == "might_max"):
-				old_value = char.might_max
-				char.might_max = new_value
-				found = True
-			elif (stat == "might_current"):
-				old_value = char.might_current
-				char.might_current = new_value
-				found = True
-			elif (stat == "might_edge"):
-				old_value = char.might_edge
-				char.might_edge = new_value
-				found = True
-			elif (stat == "speed_max"):
-				old_value = char.speed_max
-				char.speed_max = new_value
-				found = True
-			elif (stat == "speed_current"):
-				old_value = char.speed_current
-				char.speed_current = new_value
-				found = True
-			elif (stat == "speed_edge"):
-				old_value = char.speed_edge
-				char.speed_edge = new_value
-				found = True
-			elif (stat == "intellect_max"):
-				old_value = char.intellect_max
-				char.intellect_max = new_value
-				found = True
-			elif (stat == "intellect_current"):
-				old_value = char.intellect_current
-				char.intellect_current = new_value
-				found = True
-			elif (stat == "intellect_edge"):
-				old_value = char.intellect_edge
-				char.intellect_edge = new_value
-				found = True
-			elif (stat == "equipment"):
-				old_value = char.equipment
-				char.equipment = new_value
-				found = True
-			elif (stat == "money"):
-				old_value = char.money
-				char.money = new_value
-				found = True
-			elif (stat == "advancement"):
-				old_value = char.advancement
-				char.advancement = new_value
-				found = True
-			elif (stat == "notes"):
-				old_value = char.notes
-				char.notes = new_value
-				found = True
-			elif (stat == "background"):
-				old_value = char.background
-				char.background = new_value
-				found = True
-			elif (stat == "skills"):
-				old_value = char.skills
-				char.skills = new_value
-				found = True
-			elif (stat == "special_abilities"):
-				old_value = char.special_abilities
-				char.special_abilities = new_value
-				found = True
-	if (found == True):
-		await bot.say("```%s's %s value has been changed from %s to %s```" %(name,stat,old_value,new_value))
-	else:
-		await bot.say("```Either %s was not found in the party or %s stat doesn't match format on character sheet template```" %(name,stat))
+@bot.command(pass_context=True)
+async def change(ctx, name : str, stat : str, new_value : str):
+	if (str(ctx.message.author) in cool_kids):
+		found = False
+		old_value = ""
+		for char in party:
+			if (name == char.name):
+				if (stat == "name"):
+					old_value = char.name
+					char.name = new_value
+					found = True
+				elif (stat == "descriptor"):
+					old_value = char.descriptor
+					char.descriptor = new_value
+					found = True
+				elif (stat == "type_"):
+					old_value = char.type_
+					char.type_ = new_value
+					found = True
+				elif (stat == "focus"):
+					old_value = char.focus
+					char.focus = new_value
+					found = True
+				elif (stat == "tier"):
+					old_value = char.tier
+					char.tier = new_value
+					found = True
+				elif (stat == "effort"):
+					old_value = char.effort
+					char.effort = new_value
+					found = True
+				elif (stat == "xp"):
+					old_value = char.xp
+					char.xp = new_value
+					found = True
+				elif (stat == "might_max"):
+					old_value = char.might_max
+					char.might_max = new_value
+					found = True
+				elif (stat == "might_current"):
+					old_value = char.might_current
+					char.might_current = new_value
+					found = True
+				elif (stat == "might_edge"):
+					old_value = char.might_edge
+					char.might_edge = new_value
+					found = True
+				elif (stat == "speed_max"):
+					old_value = char.speed_max
+					char.speed_max = new_value
+					found = True
+				elif (stat == "speed_current"):
+					old_value = char.speed_current
+					char.speed_current = new_value
+					found = True
+				elif (stat == "speed_edge"):
+					old_value = char.speed_edge
+					char.speed_edge = new_value
+					found = True
+				elif (stat == "intellect_max"):
+					old_value = char.intellect_max
+					char.intellect_max = new_value
+					found = True
+				elif (stat == "intellect_current"):
+					old_value = char.intellect_current
+					char.intellect_current = new_value
+					found = True
+				elif (stat == "intellect_edge"):
+					old_value = char.intellect_edge
+					char.intellect_edge = new_value
+					found = True
+				elif (stat == "equipment"):
+					old_value = char.equipment
+					char.equipment = new_value
+					found = True
+				elif (stat == "money"):
+					old_value = char.money
+					char.money = new_value
+					found = True
+				elif (stat == "advancement"):
+					old_value = char.advancement
+					char.advancement = new_value
+					found = True
+				elif (stat == "notes"):
+					old_value = char.notes
+					char.notes = new_value
+					found = True
+				elif (stat == "background"):
+					old_value = char.background
+					char.background = new_value
+					found = True
+				elif (stat == "skills"):
+					old_value = char.skills
+					char.skills = new_value
+					found = True
+				elif (stat == "special_abilities"):
+					old_value = char.special_abilities
+					char.special_abilities = new_value
+					found = True
+		if (found == True):
+			await bot.say("```%s's %s value has been changed from %s to %s```" %(name,stat,old_value,new_value))
+		else:
+			await bot.say("```Either %s was not found in the party or %s stat doesn't match format on character sheet template```" %(name,stat))
 
 @bot.command()
 async def roll(dice : str):
@@ -164,25 +165,45 @@ async def roll(dice : str):
 	result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
 	await bot.say(result)
 
+
 @bot.command(description='For when you wanna settle the score some other way')
 async def choose(*choices : str):
 	"""Chooses between multiple choices."""
 	await bot.say(random.choice(choices))
 
 
-@bot.command()
-async def load(char_name : str):
+@bot.command(pass_context=True)
+async def load(ctx, char_name : str):
 	"""Load specified character"""
-	data = []
-	chars_to_load = []
-	exists = False
-	if (char_name == "all"):
-		try:
-			fo = open("party.txt", "r")
-			chars_to_load = [line.rstrip('\n') for line in fo]
-			fo.close()
-			for char in chars_to_load:
-				fo = open(char + ".txt", "r")
+	if (str(ctx.message.author) in cool_kids):
+		data = []
+		chars_to_load = []
+		exists = False
+		if (char_name == "all"):
+			try:
+				fo = open("party.txt", "r")
+				chars_to_load = [line.rstrip('\n') for line in fo]
+				fo.close()
+				for char in chars_to_load:
+					fo = open(char + ".txt", "r")
+					data = [line.rstrip('\n') for line in fo]
+					fo.close()
+					for i,v in enumerate(data[:]):
+						tok = v.find('=')
+						data[i] = v[tok+1:]
+					for char in party:
+						if (data[0] == char.name):
+							await bot.say('```%s already exists in the party.\n```' %char)
+							exists = True
+					if (exists == False):
+						temp = character(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], data[14], data[15], data[16], data[17], data[18], data[19], data[20], data[21], data[22])
+						party.append(temp)
+						await bot.say('```%s has been added to the party!\n```' %data[0])
+			except:
+				await bot.say('```Something went wrong. Check names in party.txt vs character file names. Has to be an exact match.```')
+		else:
+			try:
+				fo = open(char_name + ".txt", "r")
 				data = [line.rstrip('\n') for line in fo]
 				fo.close()
 				for i,v in enumerate(data[:]):
@@ -190,32 +211,14 @@ async def load(char_name : str):
 					data[i] = v[tok+1:]
 				for char in party:
 					if (data[0] == char.name):
-						await bot.say('```%s already exists in the party.\n```' %char)
+						await bot.say('```%s already exists in the party.\n```' %char_name)
 						exists = True
 				if (exists == False):
 					temp = character(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], data[14], data[15], data[16], data[17], data[18], data[19], data[20], data[21], data[22])
 					party.append(temp)
 					await bot.say('```%s has been added to the party!\n```' %data[0])
-		except:
-			await bot.say('```Something went wrong. Check names in party.txt vs character file names. Has to be an exact match.```')
-	else:
-		try:
-			fo = open(char_name + ".txt", "r")
-			data = [line.rstrip('\n') for line in fo]
-			fo.close()
-			for i,v in enumerate(data[:]):
-				tok = v.find('=')
-				data[i] = v[tok+1:]
-			for char in party:
-				if (data[0] == char.name):
-					await bot.say('```%s already exists in the party.\n```' %char_name)
-					exists = True
-			if (exists == False):
-				temp = character(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], data[14], data[15], data[16], data[17], data[18], data[19], data[20], data[21], data[22])
-				party.append(temp)
-				await bot.say('```%s has been added to the party!\n```' %data[0])
-		except:
-			await bot.say('```%s.txt file doesnt exist```' %char_name)
+			except:
+				await bot.say('```%s.txt file doesnt exist```' %char_name)
 
 @bot.command()
 async def display(char_name : str, stat : str = None):
@@ -231,7 +234,7 @@ async def display(char_name : str, stat : str = None):
 			if (char.name == char_name):
 				if (stat != None):
 					if (stat == "name"):
-						await bot.say("```What do you think it is?```" %(char.name,char.name))
+						await bot.say("```What do you think it is?```")
 						found = True
 					elif (stat == "descriptor"):
 						await bot.say("```%s' descriptor is %s```" %(char.name,char.descriptor))
@@ -305,18 +308,19 @@ async def display(char_name : str, stat : str = None):
 	if (found == False):
 		await bot.say("```I couldn't find that character in the party. (%s)```" %char_name)
 
-@bot.command()
-async def weather():
+@bot.command(pass_context=True)
+async def weather(ctx):
 	"""Random weather condition"""
-	foo = [ 
-		'```It\'s a dry and sunny day with occasional breeze.```',
-		'```It\'mostly sunny with only a few passing clouds. There\'s a slight breeze.```',
-		'```It\'s cloudy with a strong breeze. It doesn\'nt look like it\'s going to clear up any time soon.```',
-		'```Dark clouds begin gathering and the winds are picking up.```',
-		'```Acid rain begins to fall. Any metal around you begins to break down in minutes```'
-	]
-	foo_choice = random.choice(foo)
-	await bot.say(foo_choice)
+	if (str(ctx.message.author) in cool_kids):
+		foo = [ 
+			'```It\'s a dry and sunny day with occasional breeze.```',
+			'```It\'mostly sunny with only a few passing clouds. There\'s a slight breeze.```',
+			'```It\'s cloudy with a strong breeze. It doesn\'nt look like it\'s going to clear up any time soon.```',
+			'```Dark clouds begin gathering and the winds are picking up.```',
+			'```Acid rain begins to fall. Any metal around you begins to break down in minutes```'
+		]
+		foo_choice = random.choice(foo)
+		await bot.say(foo_choice)
 
 def save_character(char : character):
 	fo = open(char.name+".txt", "w+")
@@ -345,21 +349,22 @@ def save_character(char : character):
 	fo.write("special_abilities="+ char.special_abilities + "\n")
 	fo.close()
 
-@bot.command()
-async def save(var : str):
-	found = False
-	for char in party:
-		if (var == char.name):
-			save_character(char)
-			found = True
-			await bot.say("```Successfully saved %s```" %var)
-	if (var == "all"):
+@bot.command(pass_context=True)
+async def save(ctx, var : str):
+	if (str(ctx.message.author) in cool_kids):
+		found = False
 		for char in party:
-			save_character(char)
-			found = True
-			await bot.say("```Successfully saved all characters```")
-	if (found == False):
-		await bot.say("```%s character not found. (try !save all to just save everyone)```")
+			if (var == char.name):
+				save_character(char)
+				found = True
+				await bot.say("```Successfully saved %s```" %var)
+		if (var == "all"):
+			for char in party:
+				save_character(char)
+				found = True
+				await bot.say("```Successfully saved all characters```")
+		if (found == False):
+			await bot.say("```%s character not found. (try !save all to just save everyone)```")
 
 
 
